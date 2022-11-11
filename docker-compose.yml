@@ -1,0 +1,25 @@
+services:
+  katarynka-front:
+    container_name: katarynka-front
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    # ports:
+      # - "80:5173"
+  katarynka-stream:
+    container_name: katarynka-stream
+    build:
+      context: song_streaming
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: api_gateway
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - katarynka-stream
+      - katarynka-front
