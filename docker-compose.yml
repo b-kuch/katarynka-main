@@ -5,21 +5,11 @@ services:
     container_name: katarynka-front
     build:
       context: frontend
-      target: build-stage
-    command: npm run dev -- --host --port 80
-    volumes:
-      - ./frontend/src:/app/src
-    ports:
-      - "8080:8080"
 
   katarynka-stream:
     container_name: katarynka-stream
     build:
       context: song_streaming
-    volumes:
-      - "./song_streaming:/code"
-    environment:
-      DEBUG: 1
       
   api-gateway:
     container_name: api-gateway

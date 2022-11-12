@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  katarynka-front:
+    build:
+      target: build-stage
+    command: npm run dev -- --host --port 80
+    volumes:
+      - ./frontend/src:/app/src
+    environment:
+      DEBUG: 1
+    ports:
+      - "8080:8080"
+
+  katarynka-stream:
+    volumes:
+      - "./song_streaming:/code"
+    command: uvicorn src.streaming.main:app --host 0.0.0.0 --port 80 --proxy-headers --reload
+    environment:
+      DEBUG: 1
+    ports:
+      - "1337:80"
