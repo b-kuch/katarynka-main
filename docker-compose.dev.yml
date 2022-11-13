@@ -20,3 +20,16 @@ services:
       DEBUG: 1
     ports:
       - "1337:80"
+
+  katarynka-song-details:
+    volumes:
+      - "../song_details:/code"
+    command: uvicorn src.details.main:app --host 0.0.0.0 --port 80 --proxy-headers --reload
+    environment:
+      DEBUG: 1
+    ports:
+      - "1338:80"
+
+  katarynka-song-details-database:
+    ports:
+      - "27017:27017"

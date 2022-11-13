@@ -8,7 +8,13 @@ services:
   katarynka-stream:
     build:
       context: ../song_streaming
-      
+    volumes:
+      - ../data/songs:/songs
+
+  katarynka-song-details:
+    build:
+      context: ../song_details
+
   api-gateway:
     hostname: gateway
     image: nginx
@@ -19,3 +25,11 @@ services:
     depends_on:
       - katarynka-stream
       - katarynka-front
+
+  katarynka-song-details-database:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ../data/metadata/db:/data/db
