@@ -24,7 +24,7 @@ services:
   katarynka-song-details:
     volumes:
       - "../song_details:/code"
-    command: python manage.py runserver 0.0.0.0:80 --proxy-headers --reload
+    command: python manage.py runserver 0.0.0.0:80
     environment:
      - DEBUG=1
      - MONGODB_USER=root
