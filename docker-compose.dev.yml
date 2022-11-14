@@ -24,9 +24,11 @@ services:
   katarynka-song-details:
     volumes:
       - "../song_details:/code"
-    command: uvicorn src.details.main:app --host 0.0.0.0 --port 80 --proxy-headers --reload
+    command: python manage.py runserver 0.0.0.0:80 --proxy-headers --reload
     environment:
-      DEBUG: 1
+     - DEBUG=1
+     - MONGODB_USER=root
+     - MONGODB_PASSWORD=example
     ports:
       - "1338:80"
 
