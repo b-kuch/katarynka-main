@@ -1,9 +1,10 @@
-version: '3'
+version: '3.7'
 
 services:
   frontend:
     build:
       context: ../frontend
+      target: production-stage
 
   song-stream:
     build:
@@ -29,10 +30,12 @@ services:
       - frontend
 
   song-details-database:
-    image: mongo
+    image: postgres
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PGPORT=27017
     volumes:
-      - ../data/metadata/db:/data/db
+      - ../data/metadata/db:/var/lib/postgresql/data
