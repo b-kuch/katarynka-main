@@ -17,6 +17,10 @@ services:
       context: ../song_details
     command:
       - python -m uvicorn myproject.asgi:application
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
   api-gateway:
     hostname: gateway
@@ -36,6 +40,9 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_PGPORT=27017
+      - PGPORT=27017
+      - POSTGRES_HOST_AUTH_METHOD=scram-sha-256
     volumes:
       - ../data/metadata/db:/var/lib/postgresql/data
+    ports:
+      - "27017:5432"

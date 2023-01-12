@@ -28,11 +28,18 @@ services:
     command: python manage.py runserver 0.0.0.0:80
     environment:
      - DEBUG=1
-     - MONGODB_USER=root
-     - MONGODB_PASSWORD=example
     ports:
       - "1338:80"
 
   song-details-database:
     ports:
-      - "27017:27017"
+      - "5432:5432"
+
+  song-details-database-pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGADMIN_DEFAULT_EMAIL=aaa@aaa.aa
+      - PGADMIN_DEFAULT_PASSWORD=postgres
