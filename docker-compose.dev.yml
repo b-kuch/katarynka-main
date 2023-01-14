@@ -34,6 +34,7 @@ services:
   song-details-database:
     ports:
       - "5432:5432"
+      - "27017:27017"
 
   song-details-database-pgadmin:
     image: dpage/pgadmin4
@@ -43,3 +44,5 @@ services:
       - POSTGRES_PASSWORD=postgres
       - PGADMIN_DEFAULT_EMAIL=aaa@aaa.aa
       - PGADMIN_DEFAULT_PASSWORD=postgres
+    ports:
+      - "1339:80"
