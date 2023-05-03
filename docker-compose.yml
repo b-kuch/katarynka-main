@@ -15,8 +15,10 @@ services:
   song-details:
     build:
       context: ../song_details
-    command:
-      - python -m uvicorn myproject.asgi:application
+#    command:
+#      - python -m uvicorn src.song_details.asgi:application
+#      - ls
+    working_dir: /code/src
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
